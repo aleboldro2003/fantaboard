@@ -33,6 +33,9 @@ yarn-error.log*
 # local working files
 /tmp/
 
+# Supabase local CLI metadata
+/supabase/.temp/
+
 # deployment and generated files
 .vercel
 next-env.d.ts
