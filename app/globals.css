@@ -23,70 +23,104 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --radius-sm: calc(var(--radius) * .7);
-  --radius-md: calc(var(--radius) * .85);
+
+  --color-role-p: var(--role-p);
+  --color-role-d: var(--role-d);
+  --color-role-c: var(--role-c);
+  --color-role-a: var(--role-a);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+
+  --radius-sm: calc(var(--radius) * .55);
+  --radius-md: calc(var(--radius) * .75);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.35);
-  --radius-2xl: calc(var(--radius) * 1.7);
+  --radius-xl: calc(var(--radius) * 1.25);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-3xl: calc(var(--radius) * 2);
 }
 
+/*
+  Notte d'asta — tema unico, scuro per costruzione.
+  La palette viene dal design 1a: fondo quasi nero, verde acido come unico
+  accento d'azione, un colore dedicato per ciascun ruolo.
+*/
 :root {
-  --background: #f2f4ef;
-  --foreground: #0b1210;
-  --card: #fbfcf9;
-  --card-foreground: #0b1210;
-  --popover: #fbfcf9;
-  --popover-foreground: #0b1210;
-  --primary: #16251f;
-  --primary-foreground: #f7fee7;
-  --secondary: #e5eae3;
-  --secondary-foreground: #142019;
-  --muted: #e9ede7;
-  --muted-foreground: #67736c;
-  --accent: #d9f99d;
-  --accent-foreground: #15210d;
-  --destructive: #c93c31;
-  --border: #d9ded7;
-  --input: #cdd4cc;
-  --ring: #6f8d7b;
-  --radius: .75rem;
-}
+  --background: #070a09;
+  --foreground: #f2f5f3;
+  --card: #0e1512;
+  --card-foreground: #f2f5f3;
+  --popover: #101815;
+  --popover-foreground: #f2f5f3;
+  --primary: #00e3a0;
+  --primary-foreground: #04120d;
+  --secondary: #111a16;
+  --secondary-foreground: #f2f5f3;
+  --muted: #111a16;
+  --muted-foreground: #7f8d87;
+  --accent: #142019;
+  --accent-foreground: #00e3a0;
+  --destructive: #ff5c5c;
+  --border: #1a211e;
+  --input: #232b27;
+  --ring: #00e3a0;
+  --radius: 1rem;
 
-.dark {
-  --background: #09100e;
-  --foreground: #f2f6f0;
-  --card: #101a17;
-  --card-foreground: #f2f6f0;
-  --popover: #101a17;
-  --popover-foreground: #f2f6f0;
-  --primary: #bef264;
-  --primary-foreground: #10170d;
-  --secondary: #1a2722;
-  --secondary-foreground: #eef5ed;
-  --muted: #18231f;
-  --muted-foreground: #94a39a;
-  --accent: #2a3c27;
-  --accent-foreground: #d9f99d;
-  --destructive: #f87171;
-  --border: #26342e;
-  --input: #34443d;
-  --ring: #93c758;
+  --role-p: #ffc24b;
+  --role-d: #00e3a0;
+  --role-c: #6fc5ff;
+  --role-a: #ff6fa8;
+  --warn: #ffc24b;
+  --danger: #ff5c5c;
+
+  /* Altezza del dock pollice, per il padding di fondo pagina su mobile. */
+  --dock-height: 106px;
+
+  color-scheme: dark;
 }
 
 @layer base {
   * { @apply border-border outline-ring/50; }
   html { @apply font-sans; }
   body { @apply bg-background text-foreground; }
-  ::selection { background: #bef264; color: #0b1210; }
+  ::selection { background: var(--primary); color: var(--primary-foreground); }
+
+  /* Numeri sempre mono e tabellari: in asta si leggono in colonna. */
+  .tabular-nums { font-variant-numeric: tabular-nums; }
 }
 
-@media (max-width: 760px) {
-  [data-slot='table-head']:nth-child(4),
-  [data-slot='table-cell']:nth-child(4),
-  [data-slot='table-head']:nth-child(5),
-  [data-slot='table-cell']:nth-child(5),
-  [data-slot='table-head']:nth-child(6),
-  [data-slot='table-cell']:nth-child(6) { display: none; }
+@utility font-display {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-stretch: 125%;
+  letter-spacing: -.035em;
+}
+
+@utility num {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes livepulse {
+  0%, 100% { opacity: 1 }
+  50% { opacity: .25 }
+}
+
+@utility live-dot {
+  animation: livepulse 1.8s infinite;
+}
+
+/* La scrollbar chiara di default spezza il fondo nero. */
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #1f2723; border-radius: 999px; border: 3px solid var(--background); }
+  ::-webkit-scrollbar-thumb:hover { background: #2c3630; }
+}
+
+/* Le chip di ruolo scorrono orizzontalmente senza barra visibile. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
 }

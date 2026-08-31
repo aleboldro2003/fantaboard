@@ -3,9 +3,9 @@
 import { useState, type SyntheticEvent } from 'react';
 import { CheckCircle2, Loader2, LockKeyhole, Mail, ShieldCheck } from 'lucide-react';
 
+import { Eyebrow } from '@/components/fanta-bits';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 
 type AuthMode = 'login' | 'register';
@@ -48,23 +48,28 @@ export function AuthPanel() {
   }
 
   return (
-    <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[28px] border bg-card shadow-[0_24px_80px_rgba(8,15,13,.08)] lg:grid-cols-[1.05fr_.95fr]">
-      <div className="relative overflow-hidden bg-[#0b1210] p-6 text-white sm:p-9">
-        <div className="absolute inset-0 opacity-15 [background-image:radial-gradient(circle_at_20%_15%,#bef264,transparent_28%),linear-gradient(rgba(190,242,100,.25)_1px,transparent_1px),linear-gradient(90deg,rgba(190,242,100,.25)_1px,transparent_1px)] [background-size:auto,42px_42px,42px_42px]" />
+    <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[28px] border border-white/7 bg-card lg:grid-cols-[1.05fr_.95fr]">
+      <div className="relative overflow-hidden bg-[linear-gradient(150deg,#12211b,#0b120f)] p-6 sm:p-9">
+        <div className="pointer-events-none absolute inset-0 opacity-[.16] [background-image:radial-gradient(circle_at_20%_15%,#00e3a0,transparent_30%),linear-gradient(rgba(0,227,160,.25)_1px,transparent_1px),linear-gradient(90deg,rgba(0,227,160,.25)_1px,transparent_1px)] [background-size:auto,42px_42px,42px_42px]" />
         <div className="relative">
-          <span className="inline-flex items-center gap-2 rounded-full border border-lime-300/20 bg-lime-300/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[.13em] text-lime-300">
-            <ShieldCheck className="size-3.5" /> Area personale protetta
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1.5">
+            <ShieldCheck className="size-3.5 text-primary" />
+            <Eyebrow className="text-primary">Area personale</Eyebrow>
           </span>
-          <h2 className="mt-6 max-w-md text-3xl font-semibold tracking-[-.04em] sm:text-4xl">
-            La tua asta, aggiornata rilancio dopo rilancio.
+          <h2 className="font-display mt-6 max-w-md text-[34px] leading-[1.02] font-extrabold sm:text-[40px]">
+            La tua asta, rilancio dopo rilancio.
           </h2>
-          <p className="mt-3 max-w-md text-sm leading-relaxed text-white/55">
-            Crea la squadra, registra ogni acquisto e controlla crediti, slot e spesa per reparto da qualsiasi dispositivo.
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-foreground/45">
+            Crea la squadra, registra ogni acquisto e controlla crediti, slot e spesa per reparto da qualsiasi
+            dispositivo.
           </p>
-          <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+          <div className="mt-8 grid gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
             {['Dati sincronizzati', 'Rosa sempre pronta', 'Accesso personale'].map((item) => (
-              <div key={item} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[.055] px-3 py-2.5 text-xs text-white/70">
-                <CheckCircle2 className="size-4 shrink-0 text-lime-300" /> {item}
+              <div
+                key={item}
+                className="flex items-center gap-2 rounded-xl border border-white/8 bg-white/5 px-3 py-2.5 text-xs font-semibold text-foreground/65"
+              >
+                <CheckCircle2 className="size-4 shrink-0 text-primary" /> {item}
               </div>
             ))}
           </div>
@@ -72,20 +77,35 @@ export function AuthPanel() {
       </div>
 
       <div className="p-6 sm:p-9">
-        <p className="text-[10px] font-bold uppercase tracking-[.13em] text-muted-foreground">FantaBoard account</p>
-        <h3 className="mt-1 text-2xl font-semibold tracking-tight">Entra nella tua asta</h3>
-        <Tabs value={mode} onValueChange={(value) => setMode(value as AuthMode)} className="mt-6">
-          <TabsList className="grid h-10 w-full grid-cols-2">
-            <TabsTrigger value="login">Accedi</TabsTrigger>
-            <TabsTrigger value="register">Registrati</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <Eyebrow>FantaBoard account</Eyebrow>
+        <h3 className="font-display mt-1.5 text-2xl font-extrabold">Entra nella tua asta</h3>
 
-        <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
-          <label htmlFor="auth-email" className="block text-xs font-medium">
+        <div className="mt-6 grid grid-cols-2 gap-1 rounded-full border border-white/7 bg-secondary p-1">
+          {(
+            [
+              ['login', 'Accedi'],
+              ['register', 'Registrati'],
+            ] as const
+          ).map(([value, label]) => (
+            <button
+              key={value}
+              type="button"
+              onClick={() => setMode(value)}
+              aria-pressed={mode === value}
+              className={`rounded-full py-2 text-xs font-extrabold transition ${
+                mode === value ? 'bg-foreground text-background' : 'text-foreground/45 hover:text-foreground/80'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        <form className="mt-5 space-y-3.5" onSubmit={handleSubmit}>
+          <label htmlFor="auth-email" className="block text-xs font-bold text-foreground/60">
             Email
-            <div className="relative mt-1.5">
-              <Mail className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <div className="relative mt-2">
+              <Mail className="absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-foreground/40" />
               <Input
                 id="auth-email"
                 type="email"
@@ -94,14 +114,15 @@ export function AuthPanel() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="nome@email.it"
-                className="h-11 pl-10"
+                className="h-12 rounded-2xl border-white/7 bg-secondary pl-10.5 placeholder:text-foreground/30"
               />
             </div>
           </label>
-          <label htmlFor="auth-password" className="block text-xs font-medium">
+
+          <label htmlFor="auth-password" className="block text-xs font-bold text-foreground/60">
             Password
-            <div className="relative mt-1.5">
-              <LockKeyhole className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <div className="relative mt-2">
+              <LockKeyhole className="absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-foreground/40" />
               <Input
                 id="auth-password"
                 type="password"
@@ -111,20 +132,33 @@ export function AuthPanel() {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 placeholder="Almeno 6 caratteri"
-                className="h-11 pl-10"
+                className="h-12 rounded-2xl border-white/7 bg-secondary pl-10.5 placeholder:text-foreground/30"
               />
             </div>
           </label>
 
-          {error && <p role="alert" className="rounded-xl bg-red-50 px-3 py-2.5 text-xs text-red-700">{error}</p>}
-          {message && <p className="rounded-xl bg-emerald-50 px-3 py-2.5 text-xs text-emerald-700">{message}</p>}
+          {error && (
+            <p role="alert" className="rounded-xl border border-danger/25 bg-danger/10 px-3 py-2.5 text-xs text-danger">
+              {error}
+            </p>
+          )}
+          {message && (
+            <p className="rounded-xl border border-primary/25 bg-primary/10 px-3 py-2.5 text-xs text-primary">
+              {message}
+            </p>
+          )}
 
-          <Button type="submit" disabled={pending} className="h-11 w-full rounded-xl">
+          <Button
+            type="submit"
+            disabled={pending}
+            className="h-13 w-full rounded-2xl text-[15px] font-black shadow-[0_14px_34px_-12px_rgba(0,227,160,.6)]"
+          >
             {pending && <Loader2 className="animate-spin" />}
             {mode === 'login' ? 'Accedi alla dashboard' : 'Crea il mio account'}
           </Button>
         </form>
-        <p className="mt-4 text-center text-[10px] leading-relaxed text-muted-foreground">
+
+        <p className="mt-4 text-center text-[10px] leading-relaxed text-foreground/30">
           I dati della rosa sono separati per account tramite Row Level Security su Supabase.
         </p>
       </div>

@@ -1,14 +1,17 @@
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { Archivo, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+// Archivo variabile: l'asse wdth ci dà il taglio "Expanded" dei titoli
+// senza caricare una seconda famiglia.
+const archivo = Archivo({
+  variable: '--font-archivo',
   subsets: ['latin'],
+  axes: ['wdth'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-jetbrains',
   subsets: ['latin'],
 });
 
@@ -33,18 +36,20 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: '#070a09',
+  viewportFit: 'cover',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    // Le variabili dei font stanno su <html>: è lì che `font-sans` le legge.
+    <html lang="it" className={`${archivo.variable} ${jetbrainsMono.variable}`}>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
