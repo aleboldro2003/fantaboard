@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T16:00:55.875Z",
+  "updatedAt": "2026-08-31T17:02:59.991Z",
   "sources": {
     "prices": "https://www.fantacalcio.it/quotazioni-fantacalcio",
     "stats": "https://www.fantacalcio.it/statistiche-serie-a"
@@ -1188,7 +1188,7 @@
     },
     {
       "id": 6060,
-      "name": "Laurient&#xE8;",
+      "name": "Laurientè",
       "team": "SAS",
       "role": "A",
       "mantra": [
@@ -1200,7 +1200,7 @@
       "fvm": 86,
       "mantraQuote": 16,
       "mantraFvm": 86,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/sassuolo/laurient&#xE8;/6060",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/sassuolo/laurientè/6060",
       "appearances": 2,
       "average": 6.25,
       "fantasyAverage": 6,
@@ -1556,7 +1556,7 @@
     },
     {
       "id": 4317,
-      "name": "N&#x27;Dicka",
+      "name": "N'Dicka",
       "team": "ROM",
       "role": "D",
       "mantra": [
@@ -1979,7 +1979,7 @@
     },
     {
       "id": 5734,
-      "name": "Soul&#xE8;",
+      "name": "Soulè",
       "team": "ROM",
       "role": "A",
       "mantra": [
@@ -1991,7 +1991,7 @@
       "fvm": 45,
       "mantraQuote": 13,
       "mantraFvm": 45,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/roma/soul&#xE8;/5734",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/roma/soulè/5734",
       "appearances": 1,
       "average": 6,
       "fantasyAverage": 6,
@@ -2136,7 +2136,7 @@
     },
     {
       "id": 1850,
-      "name": "Kessi&#xE8;",
+      "name": "Kessiè",
       "team": "ATA",
       "role": "C",
       "mantra": [
@@ -2148,7 +2148,7 @@
       "fvm": 47,
       "mantraQuote": 12,
       "mantraFvm": 47,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/atalanta/kessi&#xE8;/1850",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/atalanta/kessiè/1850",
       "appearances": 0,
       "average": 0,
       "fantasyAverage": 0,
@@ -2399,7 +2399,7 @@
     },
     {
       "id": 6229,
-      "name": "Tour&#xE8; E.",
+      "name": "Tourè E.",
       "team": "PAR",
       "role": "A",
       "mantra": [
@@ -2411,7 +2411,7 @@
       "fvm": 43,
       "mantraQuote": 11,
       "mantraFvm": 43,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/parma/tour&#xE8;-e/6229",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/parma/tourè-e/6229",
       "appearances": 2,
       "average": 5.5,
       "fantasyAverage": 5.5,
@@ -2583,7 +2583,7 @@
     },
     {
       "id": 5885,
-      "name": "Dod&#xF2;",
+      "name": "Dodò",
       "team": "FIO",
       "role": "D",
       "mantra": [
@@ -2596,7 +2596,7 @@
       "fvm": 20,
       "mantraQuote": 10,
       "mantraFvm": 20,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/fiorentina/dod&#xF2;/5885",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/fiorentina/dodò/5885",
       "appearances": 1,
       "average": 5,
       "fantasyAverage": 5,
@@ -2846,7 +2846,7 @@
     },
     {
       "id": 5589,
-      "name": "Kon&#xE8; M.",
+      "name": "Konè M.",
       "team": "ROM",
       "role": "C",
       "mantra": [
@@ -2859,7 +2859,7 @@
       "fvm": 42,
       "mantraQuote": 11,
       "mantraFvm": 45,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/roma/kon&#xE8;-m/5589",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/roma/konè-m/5589",
       "appearances": 1,
       "average": 6,
       "fantasyAverage": 5.5,
@@ -3458,7 +3458,7 @@
     },
     {
       "id": 6717,
-      "name": "Kon&#xE8; I.",
+      "name": "Konè I.",
       "team": "SAS",
       "role": "C",
       "mantra": [
@@ -3470,7 +3470,7 @@
       "fvm": 20,
       "mantraQuote": 9,
       "mantraFvm": 20,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/sassuolo/kon&#xE8;-i/6717",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/sassuolo/konè-i/6717",
       "appearances": 0,
       "average": 0,
       "fantasyAverage": 0,
@@ -3669,7 +3669,7 @@
     },
     {
       "id": 6042,
-      "name": "Lucum&#xEC;",
+      "name": "Lucumì",
       "team": "JUV",
       "role": "D",
       "mantra": [
@@ -3681,7 +3681,7 @@
       "fvm": 18,
       "mantraQuote": 8,
       "mantraFvm": 18,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/juventus/lucum&#xEC;/6042",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/juventus/lucumì/6042",
       "appearances": 1,
       "average": 5.5,
       "fantasyAverage": 5,
@@ -4817,7 +4817,7 @@
     },
     {
       "id": 7472,
-      "name": "Cal&#xF2;",
+      "name": "Calò",
       "team": "FRO",
       "role": "C",
       "mantra": [
@@ -4830,7 +4830,7 @@
       "fvm": 25,
       "mantraQuote": 8,
       "mantraFvm": 28,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/frosinone/cal&#xF2;/7472",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/frosinone/calò/7472",
       "appearances": 2,
       "average": 6.25,
       "fantasyAverage": 6.75,
@@ -5240,7 +5240,7 @@
     },
     {
       "id": 6666,
-      "name": "Bernab&#xE8;",
+      "name": "Bernabè",
       "team": "PAR",
       "role": "C",
       "mantra": [
@@ -5252,7 +5252,7 @@
       "fvm": 35,
       "mantraQuote": 7,
       "mantraFvm": 35,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/parma/bernab&#xE8;/6666",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/parma/bernabè/6666",
       "appearances": 2,
       "average": 5.75,
       "fantasyAverage": 5.75,
@@ -6834,7 +6834,7 @@
     },
     {
       "id": 7146,
-      "name": "Tour&#xE8; I.",
+      "name": "Tourè I.",
       "team": "MON",
       "role": "C",
       "mantra": [
@@ -6847,7 +6847,7 @@
       "fvm": 14,
       "mantraQuote": 8,
       "mantraFvm": 17,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/monza/tour&#xE8;-i/7146",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/monza/tourè-i/7146",
       "appearances": 0,
       "average": 0,
       "fantasyAverage": 0,
@@ -7047,7 +7047,7 @@
     },
     {
       "id": 7274,
-      "name": "Z&#xE8; Pedro",
+      "name": "Zè Pedro",
       "team": "CAG",
       "role": "D",
       "mantra": [
@@ -7060,7 +7060,7 @@
       "fvm": 13,
       "mantraQuote": 6,
       "mantraFvm": 15,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/cagliari/z&#xE8;-pedro/7274",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/cagliari/zè-pedro/7274",
       "appearances": 2,
       "average": 5.75,
       "fantasyAverage": 5.5,
@@ -7367,7 +7367,7 @@
     },
     {
       "id": 2857,
-      "name": "Traor&#xE8; Hj.",
+      "name": "Traorè Hj.",
       "team": "GEN",
       "role": "C",
       "mantra": [
@@ -7380,7 +7380,7 @@
       "fvm": 11,
       "mantraQuote": 5,
       "mantraFvm": 11,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/genoa/traor&#xE8;-hj/2857",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/genoa/traorè-hj/2857",
       "appearances": 0,
       "average": 0,
       "fantasyAverage": 0,
@@ -8328,7 +8328,7 @@
     },
     {
       "id": 6618,
-      "name": "Ciss&#xE8; A.",
+      "name": "Cissè A.",
       "team": "MIL",
       "role": "C",
       "mantra": [
@@ -8341,7 +8341,7 @@
       "fvm": 25,
       "mantraQuote": 5,
       "mantraFvm": 25,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/milan/ciss&#xE8;-a/6618",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/milan/cissè-a/6618",
       "appearances": 2,
       "average": 6.25,
       "fantasyAverage": 7.75,
@@ -10649,7 +10649,7 @@
     },
     {
       "id": 7001,
-      "name": "N&#x27;Dri",
+      "name": "N'Dri",
       "team": "LEC",
       "role": "A",
       "mantra": [
@@ -10971,7 +10971,7 @@
     },
     {
       "id": 6985,
-      "name": "Cand&#xE8;",
+      "name": "Candè",
       "team": "SAS",
       "role": "D",
       "mantra": [
@@ -10984,7 +10984,7 @@
       "fvm": 7,
       "mantraQuote": 3,
       "mantraFvm": 8,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/sassuolo/cand&#xE8;/6985",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/sassuolo/candè/6985",
       "appearances": 0,
       "average": 0,
       "fantasyAverage": 0,
@@ -14520,7 +14520,7 @@
     },
     {
       "id": 4957,
-      "name": "Montip&#xF2;",
+      "name": "Montipò",
       "team": "VEN",
       "role": "P",
       "mantra": [
@@ -14532,7 +14532,7 @@
       "fvm": 1,
       "mantraQuote": 1,
       "mantraFvm": 1,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/venezia/montip&#xF2;/4957",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/venezia/montipò/4957",
       "appearances": 0,
       "average": 0,
       "fantasyAverage": 0,
@@ -14887,7 +14887,7 @@
     },
     {
       "id": 6826,
-      "name": "Dembel&#xE8; A.",
+      "name": "Dembelè A.",
       "team": "LEC",
       "role": "D",
       "mantra": [
@@ -14900,7 +14900,7 @@
       "fvm": 2,
       "mantraQuote": 1,
       "mantraFvm": 2,
-      "href": "https://www.fantacalcio.it/serie-a/squadre/lecce/dembel&#xE8;-a/6826",
+      "href": "https://www.fantacalcio.it/serie-a/squadre/lecce/dembelè-a/6826",
       "appearances": 0,
       "average": 0,
       "fantasyAverage": 0,

@@ -16,6 +16,8 @@ const clean = (value = '') =>
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
     .replace(/&#39;/g, "'")
+    .replace(/&#x([0-9a-f]+);/gi, (_match, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+    .replace(/&#(\d+);/g, (_match, code) => String.fromCodePoint(Number(code)))
     .replace(/\s+/g, ' ')
     .trim();
 
@@ -80,7 +82,7 @@ const stats = new Map(
 const players = rowsFrom(pricesHtml).map((row) => {
   const name = attr(row, 'data-filter-keywords');
   const team = cell(row, 'sq');
-  const href = row.match(/<a class="player-name player-link"[\s\S]*?href="([^"]+)"/i)?.[1] ?? '';
+  const href = clean(row.match(/<a class="player-name player-link"[\s\S]*?href="([^"]+)"/i)?.[1] ?? '');
   const officialId = number(href.match(/\/(\d+)\/?$/)?.[1]);
   return {
     id: officialId || number(attr(row, 'data-index')) + 1,

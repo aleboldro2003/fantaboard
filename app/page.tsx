@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import {
   ArrowDownUp,
   ArrowRight,
@@ -11,6 +13,7 @@ import {
   CircleDollarSign,
   ExternalLink,
   Flag,
+  Gavel,
   Goal,
   Info,
   Search,
@@ -53,6 +56,11 @@ import {
 } from '@/components/ui/table';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
+const AuctionDashboard = dynamic(
+  () => import('@/components/auction-dashboard').then((module) => module.AuctionDashboard),
+  { loading: () => <div className="grid min-h-[360px] place-items-center text-sm text-muted-foreground">Carico la dashboard…</div> },
+);
+
 const roleMeta = {
   P: { label: 'Portieri', short: 'POR', color: 'bg-amber-300 text-amber-950' },
   D: { label: 'Difensori', short: 'DIF', color: 'bg-emerald-300 text-emerald-950' },
@@ -61,7 +69,7 @@ const roleMeta = {
 } as const;
 
 type Role = keyof typeof roleMeta;
-type View = 'players' | 'teams' | 'setpieces';
+type View = 'players' | 'teams' | 'setpieces' | 'auction';
 type Player = (typeof playersData.players)[number];
 
 const roleCeilings: Record<string, number> = { P: 6.5, D: 8, C: 13, A: 20 };
@@ -108,17 +116,14 @@ function getSetPieceTags(player: Player) {
 }
 
 function TeamMark({ team, size = 'md' }: { team?: TeamInfo; size?: 'sm' | 'md' | 'lg' }) {
-  const dimension = size === 'sm' ? 'size-8 rounded-[10px] text-[9px]' : size === 'lg' ? 'size-14 rounded-2xl text-xs' : 'size-10 rounded-xl text-[10px]';
+  const dimension = size === 'sm' ? 'size-8 rounded-[10px] p-1' : size === 'lg' ? 'size-14 rounded-2xl p-2' : 'size-10 rounded-xl p-1.5';
   return (
-    <div
-      className={`grid shrink-0 place-items-center font-black tracking-[.08em] text-white shadow-sm ring-1 ring-black/5 ${dimension}`}
-      style={{
-        background: team
-          ? `linear-gradient(135deg, ${team.primary} 0 58%, ${team.secondary} 58% 100%)`
-          : '#17211d',
-      }}
-    >
-      {team?.code ?? '—'}
+    <div className={`grid shrink-0 place-items-center bg-muted/55 ${dimension}`}>
+      {team ? (
+        <Image src={`/logos/${team.code}.svg`} alt={`Logo ${team.name}`} width={56} height={56} unoptimized className="size-full object-contain" />
+      ) : (
+        <span className="text-[10px] text-muted-foreground">—</span>
+      )}
     </div>
   );
 }
@@ -156,7 +161,7 @@ export default function Home() {
 
   useEffect(() => {
     const stored = window.localStorage.getItem('fantaboard-favorites');
-    if (stored) setFavorites(JSON.parse(stored));
+    if (stored) queueMicrotask(() => setFavorites(JSON.parse(stored)));
   }, []);
 
   function toggleFavorite(id: number) {
@@ -232,6 +237,7 @@ export default function Home() {
                 <TabsTrigger value="players" className="rounded-full px-4 text-xs text-white/55 data-active:bg-white data-active:text-[#0b1210]">Listone</TabsTrigger>
                 <TabsTrigger value="teams" className="rounded-full px-4 text-xs text-white/55 data-active:bg-white data-active:text-[#0b1210]">Squadre</TabsTrigger>
                 <TabsTrigger value="setpieces" className="rounded-full px-4 text-xs text-white/55 data-active:bg-white data-active:text-[#0b1210]">Piazzati</TabsTrigger>
+                <TabsTrigger value="auction" className="rounded-full px-4 text-xs text-white/55 data-active:bg-lime-300 data-active:text-[#0b1210]">La mia asta</TabsTrigger>
               </TabsList>
             </Tabs>
           </nav>
@@ -248,6 +254,9 @@ export default function Home() {
               className={`rounded-full text-white hover:bg-white/10 hover:text-white ${favoritesOnly ? 'bg-lime-300 text-[#0b1210] hover:bg-lime-200 hover:text-[#0b1210]' : 'bg-white/[.07]'}`}
             >
               {favoritesOnly ? <BookmarkCheck /> : <Bookmark />} <span className="hidden sm:inline">Preferiti</span> {favorites.length > 0 && <span className="tabular-nums">{favorites.length}</span>}
+            </Button>
+            <Button size="sm" onClick={() => setView('auction')} className="hidden rounded-full bg-lime-300 text-[#0b1210] hover:bg-lime-200 sm:inline-flex">
+              <Gavel /> Asta live
             </Button>
           </div>
         </div>
@@ -289,15 +298,16 @@ export default function Home() {
       <div className="mx-auto max-w-[1500px] px-4 py-5 sm:px-6">
         <div className="mb-4 md:hidden">
           <Tabs value={view} onValueChange={(value) => setView(value as View)}>
-            <TabsList className="grid h-10 w-full grid-cols-3 bg-muted">
+            <TabsList className="grid h-10 w-full grid-cols-4 bg-muted">
               <TabsTrigger value="players">Listone</TabsTrigger>
               <TabsTrigger value="teams">Squadre</TabsTrigger>
               <TabsTrigger value="setpieces">Piazzati</TabsTrigger>
+              <TabsTrigger value="auction">Asta</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
 
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_300px]">
+        <div className={`grid gap-5 ${view === 'auction' ? '' : 'xl:grid-cols-[minmax(0,1fr)_300px]'}`}>
           <section className="min-w-0">
             {view === 'players' && (
               <>
@@ -453,7 +463,7 @@ export default function Home() {
                     const roster = rosterByTeam[team.code] ?? [];
                     const top = [...roster].sort((a, b) => b.fvm - a.fvm).slice(0, 3);
                     return (
-                      <button key={team.code} onClick={() => focusTeam(team.code)} className="group overflow-hidden rounded-[22px] border bg-card text-left shadow-[0_12px_35px_rgba(8,15,13,.04)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(8,15,13,.09)]">
+                      <button key={team.code} aria-label={`Apri il dossier ${team.name}`} onClick={() => focusTeam(team.code)} className="group overflow-hidden rounded-[22px] border bg-card text-left shadow-[0_12px_35px_rgba(8,15,13,.04)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(8,15,13,.09)]">
                         <div className="h-1.5" style={{ background: `linear-gradient(90deg, ${team.primary} 0 68%, ${team.secondary} 68%)` }} />
                         <div className="p-4">
                           <div className="flex items-center gap-3">
@@ -544,9 +554,11 @@ export default function Home() {
                 </div>
               </div>
             )}
+
+            {view === 'auction' && <AuctionDashboard />}
           </section>
 
-          <aside className="space-y-4 xl:sticky xl:top-[84px] xl:self-start">
+          {view !== 'auction' && <aside className="space-y-4 xl:sticky xl:top-[84px] xl:self-start">
             <div className="rounded-[22px] border bg-card p-4 shadow-[0_14px_40px_rgba(8,15,13,.05)]">
               <div className="mb-4 flex items-start justify-between">
                 <div>
@@ -619,14 +631,14 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </aside>
+          </aside>}
         </div>
       </div>
 
       <footer className="mt-10 border-t bg-[#0b1210] text-white">
         <div className="mx-auto flex max-w-[1500px] flex-col gap-3 px-4 py-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <div className="flex items-center gap-2"><Zap className="size-4 text-lime-300" /><span className="font-semibold text-white">FantaBoard</span><span>· Serie A 2026/27</span></div>
-          <p>Strumento informativo indipendente. Il target d’asta è una stima, non un prezzo ufficiale.</p>
+          <p>Strumento informativo indipendente · loghi trasparenti via FootyLogos. Il target d’asta è una stima.</p>
         </div>
       </footer>
 

@@ -37,4 +37,5 @@ export const dataSources = [
   { label: 'Listone e statistiche', href: 'https://www.fantacalcio.it/quotazioni-fantacalcio' },
   { label: 'Gerarchie rigoristi', href: 'https://www.goal.com/it/liste/fantacalcio-rigoristi-serie-a-2026-2027-tiratori-e-gerarchie-dal-dischetto-delle-20-squadre-del-campionato/bltdebca56c3bd91419' },
   { label: 'Punizioni e corner', href: 'https://www.fantacalciopedia.com/articoli-fcp/consigli-fantacalcio/216-rigoristi-e-tiratori-2026-27.html' },
+  { label: 'Loghi trasparenti', href: 'https://www.footylogos.com/competition/serie-a' },
 ];
